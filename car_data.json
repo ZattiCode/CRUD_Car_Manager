@@ -1,0 +1,92 @@
+[
+    {
+        "id": 2,
+        "model": "KA",
+        "brand": "Ford",
+        "doors": 2,
+        "tire": "Sim",
+        "year": 2014,
+        "gear": "Manual"
+    },
+    {
+        "model": "HB20",
+        "brand": "Hyundai",
+        "doors": 4,
+        "tire": "Sim",
+        "year": 2012,
+        "gear": "Manual",
+        "id": 3
+    },
+    {
+        "model": "Creta",
+        "brand": "Hyundai",
+        "doors": 4,
+        "tire": "Sim",
+        "year": 2025,
+        "gear": "Auto",
+        "id": 4
+    },
+    {
+        "model": "Corolla",
+        "brand": "Toyota",
+        "doors": 4,
+        "tire": "Sim",
+        "year": 2022,
+        "gear": "Auto",
+        "id": 6
+    },
+    {
+        "model": "Compass",
+        "brand": "Jeep",
+        "doors": 4,
+        "tire": "Sim",
+        "year": 2021,
+        "gear": "Auto",
+        "id": 7
+    },
+    {
+        "model": "Onix",
+        "brand": "Chevrolet",
+        "doors": 4,
+        "tire": "Não",
+        "year": 2020,
+        "gear": "Manual",
+        "id": 8
+    },
+    {
+        "model": "Hilux",
+        "brand": "Toyota",
+        "doors": 4,
+        "tire": "Sim",
+        "year": 2019,
+        "gear": "Manual",
+        "id": 9
+    },
+    {
+        "model": "Fusca",
+        "brand": "Volkswagen",
+        "doors": 2,
+        "tire": "Sim",
+        "year": 1985,
+        "gear": "Manual",
+        "id": 10
+    },
+    {
+        "model": "Model 3",
+        "brand": "Tesla",
+        "doors": 4,
+        "tire": "Não",
+        "year": 2023,
+        "gear": "Auto",
+        "id": 11
+    },
+    {
+        "model": "Mustang",
+        "brand": "Ford",
+        "doors": 2,
+        "tire": "Não",
+        "year": 2023,
+        "gear": "Auto",
+        "id": 12
+    }
+]

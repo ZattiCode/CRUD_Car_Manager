@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="shortcut icon" href="vintage-car-silhouette-of-side-view_icon-icons.com_70578.ico" type="image/x-icon">
+    <title>Car Manager</title>
+    <link rel="stylesheet" type="text/css" href="style.css">
+</head>
+<body>
+<div class="container">
+    <div class="text-center">
+        <h1>Gerenciador de Carros</h1>
+    </div>
+    <form action="" method="post" id="carForm">
+        <div class="form-container">
+            <div class="form-group">
+                <label for="carModel"><b>Modelo</b></label>
+                <input type="text" id="carModel" placeholder="Modelo do carro" required>
+            </div>
+            <div class="form-group">
+                <label for="carBrand"><b>Marca</b></label>
+                <input type="text" id="carBrand" placeholder="Marca do carro" required>
+            </div>
+            <div class="form-group">
+                <label for="manyDoors"><b>Portas</b></label>
+                <input type="number" id="manyDoors" placeholder="Número de portas" required>
+            </div>
+            <div class="form-group">
+                <label for="tire"><b>Estepe</b></label>
+                <input type="text" id="tire" placeholder="Possui estepe?" required>
+            </div>
+            <div class="form-group">
+                <label for="carYear"><b>Ano</b></label>
+                <input type="number" id="carYear" placeholder="Ano do carro" required>
+            </div>
+            <div class="form-group">
+                <label for="carGear"><b>Câmbio</b></label>
+                <input type="text" id="carGear" placeholder="Tipo de câmbio" required>
+            </div>
+        </div>
+        <div class="submit">
+            <input type="submit" id="submitBtn" value="Adicionar">
+        </div>
+    </form>
+</div>
+<div class="table">
+    <table>
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Carro</th>
+                <th>Portas</th>
+                <th>Estepe</th>
+                <th>Ano</th>
+                <th>Câmbio</th>
+                <th>Ações</th>
+            </tr>
+        </thead>
+        <tbody id="carTable">
+            <!-- Os registros serão inseridos aqui ta ligado? -->
+        </tbody>
+    </table>
+</div>
+<script src="jquery-3.1.1.min.js"></script>
+<script src="script.js"></script>
+</body>
+</html>

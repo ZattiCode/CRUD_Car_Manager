@@ -1,0 +1,138 @@
+body {
+    background-color: #1d2630;
+    color: white;
+    font-family: OCR A Std, monospace;
+    margin: 0;
+    padding: 0;
+}
+
+
+.text-center {
+    text-align: center;
+    margin: 20px 0;
+}
+
+.container {
+    width: 80%;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: #2e3b4e;
+    border-radius: 10px;
+    box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.5);
+}
+
+.form-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    gap: 15px;
+    margin-bottom: 20px;
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+    width: 48%;
+}
+
+.form-group label {
+    font-weight: bold;
+    margin-bottom: 5px;
+}
+
+.form-group input {
+    padding: 8px;
+    border: none;
+    border-radius: 5px;
+    background-color: #495463;
+    color: white;
+    outline: none;
+}
+
+.submit {
+    text-align: center;
+    margin-top: 15px;
+}
+
+.submit input[type="submit"] {
+    padding: 10px 20px;
+    font-size: 1rem;
+    font-weight: bold;
+    background-color: #639b63;
+    color: white;
+    border: none;
+    border-radius: 12px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.submit input[type="submit"]:hover {
+    background-color: #446d44;
+}
+
+.table {
+    width: 100%;
+    margin-top: 20px;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    background-color: #21364c;
+}
+
+table thead {
+    background-color: #33495f;
+}
+
+table thead th {
+    padding: 10px;
+    font-weight: bold;
+    color: white;
+    text-align: start;
+}
+
+table tbody tr {
+    border-bottom: 1px solid #3a4a5f;
+}
+
+table tbody tr:hover {
+    background-color: #3a4a5f;
+}
+
+table tbody td {
+    padding: 10px;
+    color: white;
+}
+
+table tbody td.actions {
+    display: flex;
+    justify-content: start;
+    align-items: center;
+}
+
+.btn-edit, .btn-delete {
+    margin: 0 5px;
+    padding: 5px 10px;
+    font-size: 0.9rem;
+    color: white;
+    text-decoration: none;
+    border-radius: 12px;
+    transition: background-color 0.3s;
+}
+
+.btn-edit {
+    background-color: #eb9e5a;
+}
+
+.btn-edit:hover {
+    background-color: #9c6b21;;
+}
+
+.btn-delete {
+    background-color: #e74c3c;
+}
+
+.btn-delete:hover {
+    background-color: #c0392b;
+}

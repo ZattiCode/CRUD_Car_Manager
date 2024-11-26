@@ -173,7 +173,7 @@ $(document).on("submit", "#carForm", function (e) {
         year: parseInt($("#carYear").val(), 10),
         gear: $("#carGear").val(),
         id: editId ? parseInt(editId, 10) : currentId++
-    };
+    };    
 
     addOrUpdateCar(car);
 });

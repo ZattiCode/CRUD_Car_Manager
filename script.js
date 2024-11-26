@@ -1,5 +1,6 @@
 let carData = [];
 let currentId = 0;
+let carToDelete = null; // Armazena o ID do carro a ser excluído
 
 // Carrega os dados do servidor ao iniciar
 function loadData() {
@@ -61,42 +62,11 @@ function displayCars() {
     });
 }
 
-// Valida os campos do formulário
-function validateField(field) {
-    if (field.val().trim() === "") {
-        field.removeClass("is-valid").addClass("is-invalid");
-        return false;
-    } else {
-        field.removeClass("is-invalid").addClass("is-valid");
-        return true;
-    }
-}
-
-// Valida todos os campos do formulário
-function validateForm() {
-    let isValid = true;
-
-    // Valida cada campo individualmente
-    $("#carForm .form-control").each(function () {
-        if (!validateField($(this))) {
-            isValid = false;
-        }
-    });
-
-    return isValid;
-}
-
-// Monitora mudanças nos campos para validar em tempo real
-$(document).on("input", "#carForm .form-control", function () {
-    validateField($(this));
-});
-
 // Exibe mensagens de alerta no topo da página
 function showAlert(message, type) {
     const alertContainer = $("#alertContainer");
     const alertId = `alert-${Date.now()}`; // ID único para o alerta
 
-    // Cria o HTML do alerta
     const alertHTML = `
         <div id="${alertId}" class="alert alert-${type}">
             ${message}
@@ -106,10 +76,8 @@ function showAlert(message, type) {
         </div>
     `;
 
-    // Adiciona o alerta no container
     alertContainer.append(alertHTML);
 
-    // Remove o alerta automaticamente após 3 segundos
     setTimeout(() => {
         $(`#${alertId}`).fadeOut(300, function () {
             $(this).remove();
@@ -121,12 +89,10 @@ function showAlert(message, type) {
 function addOrUpdateCar(car) {
     const carIndex = carData.findIndex(c => c.id === car.id);
     if (carIndex > -1) {
-        // Atualiza o carro existente
         carData[carIndex] = car;
         saveData(car);
         showAlert("Carro atualizado com sucesso!", "info");
     } else {
-        // Adiciona um novo carro
         carData.push(car);
         saveData(car);
         showAlert("Carro adicionado com sucesso!", "success");
@@ -154,13 +120,41 @@ function deleteCar(carId) {
 
 // Limpa o formulário
 function clearForm() {
-    $("#carForm")[0].reset(); // Reseta os valores do formulário
-    $("#carForm .form-control").removeClass("is-valid is-invalid"); // Remove as classes de validação
+    $("#carForm")[0].reset(); // Reseta os valores
+    $("#carForm .form-control").removeClass("is-valid is-invalid"); // Remove validações
     $("#submitBtn").data("edit-id", null).val("Adicionar");
 }
 
+// Valida os campos do formulário
+function validateField(field) {
+    if (field.val().trim() === "") {
+        field.removeClass("is-valid").addClass("is-invalid");
+        return false;
+    } else {
+        field.removeClass("is-invalid").addClass("is-valid");
+        return true;
+    }
+}
 
-// Lida com o envio do formulário para adicionar ou atualizar carros
+// Valida todos os campos do formulário
+function validateForm() {
+    let isValid = true;
+
+    $("#carForm .form-control").each(function () {
+        if (!validateField($(this))) {
+            isValid = false;
+        }
+    });
+
+    return isValid;
+}
+
+// Monitora mudanças nos campos para validar em tempo real
+$(document).on("input", "#carForm .form-control", function () {
+    validateField($(this));
+});
+
+// Envio do formulário para adicionar ou atualizar carros
 $(document).on("submit", "#carForm", function (e) {
     e.preventDefault();
 
@@ -184,7 +178,6 @@ $(document).on("submit", "#carForm", function (e) {
     addOrUpdateCar(car);
 });
 
-
 // Ação de edição
 $(document).on("click", ".btn-edit", function (e) {
     e.preventDefault();
@@ -203,15 +196,38 @@ $(document).on("click", ".btn-edit", function (e) {
     }
 });
 
-// Ação de exclusão
+// Exibe a modal de confirmação de exclusão
 $(document).on("click", ".btn-delete", function (e) {
     e.preventDefault();
+    carToDelete = $(this).data("index"); // Captura o ID do carro
+    $("#deleteModal").fadeIn(); // Exibe a modal
+});
 
-    const carId = $(this).data("index");
-    deleteCar(carId);
+// Cancela a exclusão e fecha a modal
+$(document).on("click", "#cancelDelete", function () {
+    carToDelete = null;
+    $("#deleteModal").fadeOut();
+});
+
+// Confirma a exclusão
+$(document).on("click", "#confirmDelete", function () {
+    if (carToDelete !== null) {
+        deleteCar(carToDelete);
+        carToDelete = null;
+    }
+    $("#deleteModal").fadeOut();
+});
+
+// Fecha a modal ao clicar fora do conteúdo
+$(document).on("click", "#deleteModal", function (e) {
+    if ($(e.target).is("#deleteModal")) {
+        carToDelete = null;
+        $("#deleteModal").fadeOut();
+    }
 });
 
 // Inicializa os dados ao carregar a página
 $(document).ready(function () {
+    $("#deleteModal").hide(); // Garante que a modal está escondida
     loadData();
 });

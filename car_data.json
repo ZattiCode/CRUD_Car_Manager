@@ -79,5 +79,32 @@
         "year": 2012,
         "gear": "Manual",
         "id": 9
+    },
+    {
+        "model": "a",
+        "brand": "d",
+        "doors": 1,
+        "tire": "a",
+        "year": 1,
+        "gear": "a",
+        "id": 10
+    },
+    {
+        "model": "a",
+        "brand": "d",
+        "doors": 1,
+        "tire": "a",
+        "year": 1,
+        "gear": "a",
+        "id": 11
+    },
+    {
+        "model": "a",
+        "brand": "d",
+        "doors": 1,
+        "tire": "a",
+        "year": 1,
+        "gear": "a",
+        "id": 12
     }
 ]

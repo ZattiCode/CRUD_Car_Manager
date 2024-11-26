@@ -23,10 +23,12 @@ body {
 
 .form-container {
     display: flex;
+    flex-direction: column;
+    align-items: center;
     flex-wrap: wrap;
-    justify-content: space-between;
+    justify-content: center;
     gap: 15px;
-    margin-bottom: 20px;
+    margin-bottom: 10px;
 }
 
 .form-group {

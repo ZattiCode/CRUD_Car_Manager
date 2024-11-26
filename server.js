@@ -1,57 +1,83 @@
-    const express = require('express'); //importa o express (criar/gerenciar) server
-    const fs = require('fs'); //importa fs (leitura/escrita) de arquivos
-    const bodyParser = require('body-parser');  //importa body-parser (interpretar) requisiçoes JSON
+const express = require('express');
+const fs = require('fs');
+const bodyParser = require('body-parser');
+const path = require('path');
 
-    const app = express(); // configurar rotas middleware (body-parser)
-    const path = require('path');
-    const PORT = 3000; // não preciso falar né
-    const DATA_FILE = 'car_data.json'; // nome do arquivo dos carros salvos
+const app = express();
+const PORT = 3001;
+const DATA_FILE = 'car_data.json';
 
-    //--------------------------------------------------------------------------------//
+app.use(bodyParser.json());
+app.use(express.static(path.join(__dirname)));
 
-    /*var http = require("http");
+app.get('/', (req, res) => {
+    res.sendFile(path.join(__dirname, 'index.html'));
+});
 
-    http
-        .createServer(function (req, res) {
-            res.writeHead(200, {"Content-Type": "text/plain"});
-
-            res.end("Olá mundo\n");
-        })
-    .listen(3000, "127.0.0.1")*/
-    //--------------------------------------------------------------------------------//
-
-    app.use(bodyParser.json()); // ativar o (body-parser)
-    app.use(express.static(path.join(__dirname))); // html, css , js...
-
-    app.get('/', (req, res) => {
-        res.sendFile(path.join(__dirname, 'index.html'));
+app.get('/cars', (req, res) => {
+    fs.readFile(DATA_FILE, (err, data) => {
+        if (err) {
+            res.status(500).send({ error: 'Erro ao ler o arquivo, parça' });
+        } else {
+            res.json(JSON.parse(data));
+        }
     });
+});
 
-    // rota get para buscar os dados dos carros
-    app.get('/cars', (req, res) => {
-        fs.readFile(DATA_FILE, (err, data) => {
-            if (err) {
-                res.status(500).send({ error: 'Erro ao ler o arquivo, parça' });
+app.post('/cars', (req, res) => {
+    const car = req.body;
+    fs.readFile(DATA_FILE, (err, data) => {
+        if (err) {
+            res.status(500).send({ error: 'Erro ao ler o arquivo, parça' });
+        } else {
+            let cars = JSON.parse(data);
+            const carIndex = cars.findIndex(c => c.id === car.id);
+
+            if (carIndex !== -1) {
+                // Atualiza o carro existente
+                cars[carIndex] = car;
+                res.send({ message: 'Carro atualizado com sucesso!' });
             } else {
-                res.json(JSON.parse(data));
+                // Adiciona um novo carro
+                cars.push(car);
+                res.send({ message: 'Carro adicionado com sucesso!' });
             }
-        });
-    });
 
-    // rota post para salvar os dados dos carros
-    app.post('/cars', (req, res) => {
-        const cars = req.body; // dados recebidos
-        fs.writeFile(DATA_FILE, JSON.stringify(cars, null, 4), (err) => {
-            if (err) {
-                res.status(500).send({ error: 'Erro ao salvar os dados, irmão' });
+            fs.writeFile(DATA_FILE, JSON.stringify(cars, null, 4), (err) => {
+                if (err) {
+                    res.status(500).send({ error: 'Erro ao salvar os dados' });
+                }
+            });
+        }
+    });
+});
+
+
+app.delete('/cars/:id', (req, res) => {
+    const id = parseInt(req.params.id, 10);
+    fs.readFile(DATA_FILE, (err, data) => {
+        if (err) {
+            res.status(500).send({ error: 'Erro ao ler o arquivo' });
+        } else {
+            let cars = JSON.parse(data);
+            const carIndex = cars.findIndex(car => car.id === id);
+
+            if (carIndex !== -1) {
+                cars.splice(carIndex, 1);
+                fs.writeFile(DATA_FILE, JSON.stringify(cars, null, 4), (err) => {
+                    if (err) {
+                        res.status(500).send({ error: 'Erro ao salvar os dados após exclusão' });
+                    } else {
+                        res.send({ message: 'Carro excluído com sucesso!' });
+                    }
+                });
             } else {
-                res.send({ message: 'Certinho, dados salvos' });
+                res.status(404).send({ error: 'Carro não encontrado' });
             }
-        });
+        }
     });
+});
 
-
-    // inicia o server
-    app.listen(PORT, () => {
-        console.log('porta do servidor', PORT);
-    });
+app.listen(PORT, () => {
+    console.log('Servidor iniciado na porta', PORT);
+});

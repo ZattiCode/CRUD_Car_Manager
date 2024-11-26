@@ -1,17 +1,10 @@
-//pra que serve
-//tantos códigos?
-//se a vida
-//não é programada
-//e as melhores coisas
-//não tem lógica.
-
 let carData = [];
 let currentId = 0;
 
-// carrega os dados do car_data.json ao iniciar
+// Carrega os dados do servidor ao iniciar
 function loadData() {
     $.ajax({
-        url: 'http://127.0.0.1:3000/cars',
+        url: 'http://127.0.0.1:3001/cars',
         type: 'GET',
         success: function (response) {
             carData = response;
@@ -21,34 +14,35 @@ function loadData() {
             displayCars();
         },
         error: function () {
-            console.log('Deu erro para carregar os dados');
+            console.log('Erro ao carregar os dados');
         }
     });
 }
 
-// salva os dados no car_data.json
-function saveData() {
+// Salva os dados no servidor
+function saveData(car) {
     $.ajax({
-        url: 'http://127.0.0.1:3000/cars',
+        url: 'http://127.0.0.1:3001/cars',
         type: 'POST',
         contentType: 'application/json',
-        data: JSON.stringify(carData),
+        data: JSON.stringify(car),
         success: function () {
-            console.log('Dados salvos com sucesso');
+            console.log('Carro salvo com sucesso!');
+            loadData(); // Recarrega os dados para refletir as alterações
         },
         error: function () {
-            console.log('Erro ao salvar os dados');
+            console.log('Erro ao salvar o carro');
         }
     });
 }
 
-// exibe os dados na tabela
+// Exibe os carros na tabela
 function displayCars() {
     const tableBody = $("#carTable");
-    tableBody.empty(); // limpa o conteúdo atual da tabela
+    tableBody.empty(); // Limpa a tabela
 
     carData.forEach(car => {
-        const carDescription = `${car.brand} ${car.model}`; // marca + modelo
+        const carDescription = `${car.brand} ${car.model}`;
         const row = `
             <tr>
                 <td>${car.id}</td>
@@ -67,115 +61,137 @@ function displayCars() {
     });
 }
 
-// adicionar um carro novo
-function addCar(car) {
-    car.id = currentId++; // incrementa o ID único
-    carData.push(car); // adiciona ao array
-    saveData(); // salva no car_data.json
-    displayCars(); // atualiza a tabela
-    clearForm(); // limpa o formulário
-}
-
-// atualizar um carro já existente
-function updateCar(index, updatedCar) {
-    const carIndex = carData.findIndex(car => car.id === index);
-    if (carIndex !== -1) {
-        updatedCar.id = carData[carIndex].id; // mantém o ID
-        carData[carIndex] = updatedCar;
-        saveData(); // salva no car_data.json
-        displayCars(); // atualiza a tabela
-        clearForm(); // reseta o formulário
-        $("#submitBtn").val("Adicionar").removeData("editingIndex");
+// Valida os campos do formulário
+function validateField(field) {
+    if (field.val().trim() === "") {
+        field.removeClass("is-valid").addClass("is-invalid");
+        return false;
+    } else {
+        field.removeClass("is-invalid").addClass("is-valid");
+        return true;
     }
 }
 
-// excluir um carro
-function deleteCar(index) {
-    carData = carData.filter(car => car.id !== index);
-    saveData(); // salva no car_data.json
-    displayCars(); // atualiza tabela
-}
+// Valida todos os campos do formulário
+function validateForm() {
+    let isValid = true;
 
-// limpar formulário
-function clearForm() {
-    $("#carModel").val("");
-    $("#carBrand").val("");
-    $("#manyDoors").val("");
-    $("#tire").val("");
-    $("#carYear").val("");
-    $("#carGear").val("");
-    $("#submitBtn").val("Adicionar").removeData("editingIndex");
-}
-
-// enviar o formulário com validação de campos
-$("#submitBtn").on("click", function (e) {
-    e.preventDefault();
-    let enviaForm = true;
-
-    // validação individual dos campos
-    if ($("#carModel").val() == null || $("#carModel").val().trim() === "") {
-        alert("Tá faltando o modelo do carro, viu?");
-        enviaForm = false;
-    }
-    if ($("#carBrand").val() == null || $("#carBrand").val().trim() === "") {
-        alert("Tá faltando a marca do carro, viu?");
-        enviaForm = false;
-    }
-    if ($("#manyDoors").val() == null || $("#manyDoors").val().trim() === "") {
-        alert("Tá faltando o número de portas, viu?");
-        enviaForm = false;
-    }
-    if ($("#tire").val() == null || $("#tire").val().trim() === "") {
-        alert("Tá faltando o estepe, viu?");
-        enviaForm = false;
-    }
-    if ($("#carYear").val() == null || $("#carYear").val().trim() === "") {
-        alert("Tá faltando o ano do carro, viu?");
-        enviaForm = false;
-    }
-    if ($("#carGear").val() == null || $("#carGear").val().trim() === "") {
-        alert("Tá faltando o câmbio do carro, viu?");
-        enviaForm = false;
-    }
-
-    // envia, se todos os campos estiverem preenchidos
-    if (enviaForm === true) {
-        const editingIndex = $("#submitBtn").data("editingIndex");
-        if (editingIndex !== undefined) { //verifica se esta no modo edição
-            
-            const updatedCar = {
-                id: editingIndex,
-                model: $("#carModel").val(),
-                brand: $("#carBrand").val(),
-                doors: parseInt($("#manyDoors").val()),
-                tire: $("#tire").val(),
-                year: parseInt($("#carYear").val()),
-                gear: $("#carGear").val()
-            };
-
-            updateCar(editingIndex, updatedCar); //atualiza o carro no array e no backend
-        } else {
-            const newCar = { //cria um objeto para um carro novo
-                model: $("#carModel").val(),
-                brand: $("#carBrand").val(),
-                doors: parseInt($("#manyDoors").val()),
-                tire: $("#tire").val(),
-                year: parseInt($("#carYear").val()),
-                gear: $("#carGear").val()
-            };
-
-            addCar(newCar);
+    // Valida cada campo individualmente
+    $("#carForm .form-control").each(function () {
+        if (!validateField($(this))) {
+            isValid = false;
         }
+    });
 
-        clearForm();
-    }
+    return isValid;
+}
+
+// Monitora mudanças nos campos para validar em tempo real
+$(document).on("input", "#carForm .form-control", function () {
+    validateField($(this));
 });
 
-// edição, sério??
+// Exibe mensagens de alerta no topo da página
+function showAlert(message, type) {
+    const alertContainer = $("#alertContainer");
+    const alertId = `alert-${Date.now()}`; // ID único para o alerta
+
+    // Cria o HTML do alerta
+    const alertHTML = `
+        <div id="${alertId}" class="alert alert-${type}">
+            ${message}
+            <button type="button" class="close" onclick="$('#${alertId}').remove()" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+    `;
+
+    // Adiciona o alerta no container
+    alertContainer.append(alertHTML);
+
+    // Remove o alerta automaticamente após 3 segundos
+    setTimeout(() => {
+        $(`#${alertId}`).fadeOut(300, function () {
+            $(this).remove();
+        });
+    }, 3000);
+}
+
+// Adiciona ou atualiza um carro
+function addOrUpdateCar(car) {
+    const carIndex = carData.findIndex(c => c.id === car.id);
+    if (carIndex > -1) {
+        // Atualiza o carro existente
+        carData[carIndex] = car;
+        saveData(car);
+        showAlert("Carro atualizado com sucesso!", "info");
+    } else {
+        // Adiciona um novo carro
+        carData.push(car);
+        saveData(car);
+        showAlert("Carro adicionado com sucesso!", "success");
+    }
+    displayCars();
+    clearForm();
+    $("#submitBtn").data("edit-id", null).val("Adicionar");
+}
+
+// Exclui um carro
+function deleteCar(carId) {
+    $.ajax({
+        url: `http://127.0.0.1:3001/cars/${carId}`,
+        type: 'DELETE',
+        success: function () {
+            carData = carData.filter(car => car.id !== carId);
+            displayCars();
+            showAlert("Carro excluído com sucesso!", "danger");
+        },
+        error: function () {
+            console.log('Erro ao excluir o carro');
+        }
+    });
+}
+
+// Limpa o formulário
+function clearForm() {
+    $("#carForm")[0].reset(); // Reseta os valores do formulário
+    $("#carForm .form-control").removeClass("is-valid is-invalid"); // Remove as classes de validação
+    $("#submitBtn").data("edit-id", null).val("Adicionar");
+}
+
+
+// Lida com o envio do formulário para adicionar ou atualizar carros
+$(document).on("submit", "#carForm", function (e) {
+    e.preventDefault();
+
+    if (!validateForm()) {
+        showAlert("Preencha todos os campos corretamente antes de enviar.", "danger");
+        return;
+    }
+
+    const editId = $("#submitBtn").data("edit-id");
+
+    const car = {
+        model: $("#carModel").val(),
+        brand: $("#carBrand").val(),
+        doors: parseInt($("#manyDoors").val(), 10),
+        tire: $("#tire").val(),
+        year: parseInt($("#carYear").val(), 10),
+        gear: $("#carGear").val(),
+        id: editId ? parseInt(editId, 10) : currentId++
+    };
+
+    addOrUpdateCar(car);
+});
+
+
+// Ação de edição
 $(document).on("click", ".btn-edit", function (e) {
     e.preventDefault();
-    const index = parseInt($(this).data("index"));
-    const car = carData.find(car => car.id === index);
+
+    const carId = $(this).data("index");
+    const car = carData.find(c => c.id === carId);
+
     if (car) {
         $("#carModel").val(car.model);
         $("#carBrand").val(car.brand);
@@ -183,18 +199,19 @@ $(document).on("click", ".btn-edit", function (e) {
         $("#tire").val(car.tire);
         $("#carYear").val(car.year);
         $("#carGear").val(car.gear);
-        $("#submitBtn").val("Atualizar").data("editingIndex", index);
+        $("#submitBtn").data("edit-id", car.id).val("Salvar");
     }
 });
 
-// excluir, ava
+// Ação de exclusão
 $(document).on("click", ".btn-delete", function (e) {
     e.preventDefault();
-    const index = parseInt($(this).data("index"));
-    deleteCar(index);
+
+    const carId = $(this).data("index");
+    deleteCar(carId);
 });
 
-// carregar dados ao iniciar
+// Inicializa os dados ao carregar a página
 $(document).ready(function () {
     loadData();
 });

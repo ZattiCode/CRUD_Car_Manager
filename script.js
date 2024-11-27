@@ -1,6 +1,8 @@
 let carData = [];
 let currentId = 0;
-let carToDelete = null; // Armazena o ID do carro a ser excluído
+let carToDelete = null; // Armazena o ID do carro a ser 
+let currentPage = 1;
+const itemsPerPage = 10;
 
 // Carrega os dados do servidor ao iniciar
 function loadData() {
@@ -12,6 +14,7 @@ function loadData() {
             if (carData.length > 0) {
                 currentId = Math.max(...carData.map(car => car.id)) + 1;
             }
+            currentPage = 1;
             displayCars();
         },
         error: function () {
@@ -42,7 +45,62 @@ function displayCars() {
     const tableBody = $("#carTable");
     tableBody.empty(); // Limpa a tabela
 
-    carData.forEach(car => {
+    const start = (currentPage - 1) * itemsPerPage;
+    const end = start + itemsPerPage;
+    const carsToDisplay = carData.slice(start, end);
+
+    carsToDisplay.forEach(car => {
+        const carDescription = `${car.brand} ${car.model}`;
+        const row = `
+            <tr>
+                <td>${car.id}</td>
+                <td>${carDescription}</td>
+                <td>${car.doors}</td>
+                <td>${car.tire}</td>
+                <td>${car.year}</td>
+                <td>${car.gear}</td>
+                <td class="actions">
+                    <a href="#" class="btn-edit" data-index="${car.id}">EDITAR</a>
+                    <a href="#" class="btn-delete" data-index="${car.id}">DELETAR</a>
+                </td>
+            </tr>
+        `;
+        tableBody.append(row);
+    });
+
+    updatePagination();
+}
+
+function searchCars() {
+    const searchTerm = $("#searchInput").val().toLowerCase();
+    const filteredCars = carData.filter(car => 
+        car.model.toLowerCase().includes(searchTerm) || 
+        car.brand.toLowerCase().includes(searchTerm)
+    );
+    displayFilteredCars(filteredCars);
+}
+
+function updatePagination() {
+    const paginationContainer = $("#pagination");
+    paginationContainer.empty();
+
+    const totalPages = Math.ceil(carData.length / itemsPerPage);
+
+    for (let i = 1; i <= totalPages; i++) {
+        const button = `<button class="page-btn" data-page="${i}">${i}</button>`;
+        paginationContainer.append(button);
+    }
+
+    // Marca a página atual como ativa
+    $(`.page-btn[data-page="${currentPage}"]`).addClass("active");
+}
+
+
+function displayFilteredCars(filteredCars) {
+    const tableBody = $("#carTable");
+    tableBody.empty(); // Limpa a tabela
+
+    filteredCars.forEach(car => {
         const carDescription = `${car.brand} ${car.model}`;
         const row = `
             <tr>
@@ -61,6 +119,7 @@ function displayCars() {
         tableBody.append(row);
     });
 }
+
 
 // Exibe mensagens de alerta no topo da página
 function showAlert(message, type) {
@@ -223,6 +282,27 @@ $(document).on("click", "#deleteModal", function (e) {
     if ($(e.target).is("#deleteModal")) {
         carToDelete = null;
         $("#deleteModal").fadeOut();
+    }
+});
+
+//Procurar carro 
+$(document).on("click", "#searchBtn", function () {
+    searchCars();
+});
+
+// Selecionar a pagina
+$(document).on("click", ".page-btn", function () {
+    const selectedPage = parseInt($(this).data("page"), 10);
+    if (selectedPage !== currentPage) {
+        currentPage = selectedPage;
+        displayCars();
+    }
+});
+
+//caso não haja nada no pesquisar
+$(document).on("input", "#searchInput", function () {
+    if ($(this).val().trim() === "") {
+        displayCars(); // Voltar pra tabela inicial quando nada tiver escrito
     }
 });
 

@@ -1,272 +1,322 @@
 [
-    {
-        "model": "Creta",
-        "brand": "Hyundai",
-        "doors": 4,
-        "tire": "Sim",
-        "year": 2024,
-        "gear": "Automático",
-        "id": 1
-    },
-    {
-        "model": "Corolla",
-        "brand": "Toyota",
-        "doors": 4,
-        "tire": "Sim",
-        "year": 2022,
-        "gear": "Automático",
-        "id": 2
-    },
-    {
-        "model": "Compass",
-        "brand": "Jeep",
-        "doors": 4,
-        "tire": "Sim",
-        "year": 2021,
-        "gear": "Automático",
-        "id": 3
-    },
-    {
-        "model": "Onix",
-        "brand": "Chevrolet",
-        "doors": 4,
-        "tire": "Não",
-        "year": 2020,
-        "gear": "Manual",
-        "id": 4
-    },
-    {
-        "model": "Hilux",
-        "brand": "Toyota",
-        "doors": 4,
-        "tire": "Sim",
-        "year": 2019,
-        "gear": "Manual",
-        "id": 5
-    },
-    {
-        "model": "Fusca",
-        "brand": "Volkswagen",
-        "doors": 2,
-        "tire": "Sim",
-        "year": 1985,
-        "gear": "Manual",
-        "id": 6
-    },
-    {
-        "model": "Model 3",
-        "brand": "Tesla",
-        "doors": 4,
-        "tire": "Não",
-        "year": 2023,
-        "gear": "Automático",
-        "id": 7
-    },
-    {
-        "model": "Mustang",
-        "brand": "Ford",
-        "doors": 2,
-        "tire": "Não",
-        "year": 2023,
-        "gear": "Automático",
-        "id": 8
-    },
-    {
-        "model": "HB20",
-        "brand": "Hyundai",
-        "doors": 4,
-        "tire": "Sim",
-        "year": 2012,
-        "gear": "Manual",
-        "id": 9
-    },
-    {
-        "model": "Q5",
-        "brand": "Audi",
-        "doors": 4,
-        "tire": "Sim",
-        "year": 2022,
-        "gear": "Automático",
-        "id": 10
-    },
-    {
-        "model": "A4",
-        "brand": "Audi",
-        "doors": 4,
-        "tire": "Sim",
-        "year": 2021,
-        "gear": "Automático",
-        "id": 11
-    },
-    {
-        "model": "X1",
-        "brand": "BMW",
-        "doors": 4,
-        "tire": "Sim",
-        "year": 2023,
-        "gear": "Automático",
-        "id": 12
-    },
-    {
-        "model": "320i",
-        "brand": "BMW",
-        "doors": 4,
-        "tire": "Sim",
-        "year": 2020,
-        "gear": "Automático",
-        "id": 13
-    },
-    {
-        "model": "Tiggo 8",
-        "brand": "Chery",
-        "doors": 4,
-        "tire": "Sim",
-        "year": 2023,
-        "gear": "Automático",
-        "id": 14
-    },
-    {
-        "model": "Arrizo 6",
-        "brand": "Chery",
-        "doors": 4,
-        "tire": "Não",
-        "year": 2021,
-        "gear": "Manual",
-        "id": 15
-    },
-    {
-        "model": "Tracker",
-        "brand": "Chevrolet",
-        "doors": 4,
-        "tire": "Sim",
-        "year": 2022,
-        "gear": "Automático",
-        "id": 16
-    },
-    {
-        "model": "Cobalt",
-        "brand": "Chevrolet",
-        "doors": 4,
-        "tire": "Não",
-        "year": 2018,
-        "gear": "Manual",
-        "id": 17
-    },
-    {
-        "model": "Toro",
-        "brand": "Fiat",
-        "doors": 4,
-        "tire": "Sim",
-        "year": 2021,
-        "gear": "Automático",
-        "id": 18
-    },
-    {
-        "model": "Mobi",
-        "brand": "Fiat",
-        "doors": 4,
-        "tire": "Não",
-        "year": 2019,
-        "gear": "Manual",
-        "id": 19
-    },
-    {
-        "model": "Ranger",
-        "brand": "Ford",
-        "doors": 4,
-        "tire": "Sim",
-        "year": 2020,
-        "gear": "Automático",
-        "id": 20
-    },
-    {
-        "model": "Ka",
-        "brand": "Ford",
-        "doors": 4,
-        "tire": "Não",
-        "year": 2015,
-        "gear": "Manual",
-        "id": 21
-    },
-    {
-        "model": "Civic",
-        "brand": "Honda",
-        "doors": 4,
-        "tire": "Sim",
-        "year": 2023,
-        "gear": "Automático",
-        "id": 22
-    },
-    {
-        "model": "HR-V",
-        "brand": "Honda",
-        "doors": 4,
-        "tire": "Sim",
-        "year": 2022,
-        "gear": "Automático",
-        "id": 23
-    },
-    {
-        "model": "Tucson",
-        "brand": "Hyundai",
-        "doors": 4,
-        "tire": "Sim",
-        "year": 2022,
-        "gear": "Automático",
-        "id": 24
-    },
-    {
-        "model": "i30",
-        "brand": "Hyundai",
-        "doors": 4,
-        "tire": "Sim",
-        "year": 2018,
-        "gear": "Manual",
-        "id": 25
-    },
-    {
-        "model": "Camry",
-        "brand": "Toyota",
-        "doors": 4,
-        "tire": "Sim",
-        "year": 2021,
-        "gear": "Automático",
-        "id": 26
-    },
-    {
-        "model": "Etios",
-        "brand": "Toyota",
-        "doors": 4,
-        "tire": "Não",
-        "year": 2017,
-        "gear": "Manual",
-        "id": 27
-    },
-    {
-        "model": "Q7",
-        "brand": "Audi",
-        "doors": 4,
-        "tire": "Sim",
-        "year": 2023,
-        "gear": "Automático",
-        "id": 28
-    },
-    {
-        "model": "X5",
-        "brand": "BMW",
-        "doors": 4,
-        "tire": "Sim",
-        "year": 2021,
-        "gear": "Automático",
-        "id": 29
-    },
-    {
-        "model": "CR-V",
-        "brand": "Honda",
-        "doors": 4,
-        "tire": "Sim",
-        "year": 2020,
-        "gear": "Automático",
-        "id": 30
-    }
+  {
+    "model": "Creta",
+    "brand": "Hyundai",
+    "doors": 4,
+    "tire": "Sim",
+    "year": 2024,
+    "gear": "Automático",
+    "id": 1
+  },
+  {
+    "model": "Corolla",
+    "brand": "Toyota",
+    "doors": 4,
+    "tire": "Sim",
+    "year": 2022,
+    "gear": "Automático",
+    "id": 2
+  },
+  {
+    "model": "Compass",
+    "brand": "Jeep",
+    "doors": 4,
+    "tire": "Sim",
+    "year": 2021,
+    "gear": "Automático",
+    "id": 3
+  },
+  {
+    "model": "Onix",
+    "brand": "Chevrolet",
+    "doors": 4,
+    "tire": "Não",
+    "year": 2020,
+    "gear": "Manual",
+    "id": 4
+  },
+  {
+    "model": "Hilux",
+    "brand": "Toyota",
+    "doors": 4,
+    "tire": "Sim",
+    "year": 2019,
+    "gear": "Manual",
+    "id": 5
+  },
+  {
+    "model": "Fusca",
+    "brand": "Volkswagen",
+    "doors": 2,
+    "tire": "Sim",
+    "year": 1985,
+    "gear": "Manual",
+    "id": 6
+  },
+  {
+    "model": "Model 3",
+    "brand": "Tesla",
+    "doors": 4,
+    "tire": "Não",
+    "year": 2023,
+    "gear": "Automático",
+    "id": 7
+  },
+  {
+    "model": "Mustang",
+    "brand": "Ford",
+    "doors": 2,
+    "tire": "Não",
+    "year": 2023,
+    "gear": "Automático",
+    "id": 8
+  },
+  {
+    "model": "HB20",
+    "brand": "Hyundai",
+    "doors": 4,
+    "tire": "Sim",
+    "year": 2012,
+    "gear": "Manual",
+    "id": 9
+  },
+  {
+    "model": "Q5",
+    "brand": "Audi",
+    "doors": 4,
+    "tire": "Sim",
+    "year": 2022,
+    "gear": "Automático",
+    "id": 10
+  },
+  {
+    "model": "A4",
+    "brand": "Audi",
+    "doors": 4,
+    "tire": "Sim",
+    "year": 2021,
+    "gear": "Automático",
+    "id": 11
+  },
+  {
+    "model": "X1",
+    "brand": "BMW",
+    "doors": 4,
+    "tire": "Sim",
+    "year": 2023,
+    "gear": "Automático",
+    "id": 12
+  },
+  {
+    "model": "320i",
+    "brand": "BMW",
+    "doors": 4,
+    "tire": "Sim",
+    "year": 2020,
+    "gear": "Automático",
+    "id": 13
+  },
+  {
+    "model": "Tiggo 8",
+    "brand": "Chery",
+    "doors": 4,
+    "tire": "Sim",
+    "year": 2023,
+    "gear": "Automático",
+    "id": 14
+  },
+  {
+    "model": "Arrizo 6",
+    "brand": "Chery",
+    "doors": 4,
+    "tire": "Não",
+    "year": 2021,
+    "gear": "Manual",
+    "id": 15
+  },
+  {
+    "model": "Tracker",
+    "brand": "Chevrolet",
+    "doors": 4,
+    "tire": "Sim",
+    "year": 2022,
+    "gear": "Automático",
+    "id": 16
+  },
+  {
+    "model": "Cobalt",
+    "brand": "Chevrolet",
+    "doors": 4,
+    "tire": "Não",
+    "year": 2018,
+    "gear": "Manual",
+    "id": 17
+  },
+  {
+    "model": "Toro",
+    "brand": "Fiat",
+    "doors": 4,
+    "tire": "Sim",
+    "year": 2021,
+    "gear": "Automático",
+    "id": 18
+  },
+  {
+    "model": "Mobi",
+    "brand": "Fiat",
+    "doors": 4,
+    "tire": "Não",
+    "year": 2019,
+    "gear": "Manual",
+    "id": 19
+  },
+  {
+    "model": "Ranger",
+    "brand": "Ford",
+    "doors": 4,
+    "tire": "Sim",
+    "year": 2020,
+    "gear": "Automático",
+    "id": 20
+  },
+  {
+    "model": "Ka",
+    "brand": "Ford",
+    "doors": 4,
+    "tire": "Não",
+    "year": 2015,
+    "gear": "Manual",
+    "id": 21
+  },
+  {
+    "model": "Civic",
+    "brand": "Honda",
+    "doors": 4,
+    "tire": "Sim",
+    "year": 2023,
+    "gear": "Automático",
+    "id": 22
+  },
+  {
+    "model": "HR-V",
+    "brand": "Honda",
+    "doors": 4,
+    "tire": "Sim",
+    "year": 2022,
+    "gear": "Automático",
+    "id": 23
+  },
+  {
+    "model": "Tucson",
+    "brand": "Hyundai",
+    "doors": 4,
+    "tire": "Sim",
+    "year": 2022,
+    "gear": "Automático",
+    "id": 24
+  },
+  {
+    "model": "i30",
+    "brand": "Hyundai",
+    "doors": 4,
+    "tire": "Sim",
+    "year": 2018,
+    "gear": "Manual",
+    "id": 25
+  },
+  {
+    "model": "Camry",
+    "brand": "Toyota",
+    "doors": 4,
+    "tire": "Sim",
+    "year": 2021,
+    "gear": "Automático",
+    "id": 26
+  },
+  {
+    "model": "Etios",
+    "brand": "Toyota",
+    "doors": 4,
+    "tire": "Não",
+    "year": 2017,
+    "gear": "Manual",
+    "id": 27
+  },
+  {
+    "model": "Q7",
+    "brand": "Audi",
+    "doors": 4,
+    "tire": "Sim",
+    "year": 2023,
+    "gear": "Automático",
+    "id": 28
+  },
+  {
+    "model": "X5",
+    "brand": "BMW",
+    "doors": 4,
+    "tire": "Sim",
+    "year": 2021,
+    "gear": "Automático",
+    "id": 29
+  },
+  {
+    "model": "CR-V",
+    "brand": "Honda",
+    "doors": 4,
+    "tire": "Sim",
+    "year": 2020,
+    "gear": "Automático",
+    "id": 30
+  },
+  {
+    "model": "Tigre",
+    "brand": "Hyundai",
+    "year": 1980,
+    "doors": 5,
+    "tire": "Não",
+    "gear": "CVT",
+    "photo": "uploads/1733143208691-924bbfc9c49640e966c96a7ea4e64e24.jpg",
+    "id": 31
+  },
+  {
+    "model": "Dromedario",
+    "brand": "Honda",
+    "year": 2008,
+    "doors": 2,
+    "tire": "Não",
+    "gear": "Manual",
+    "photo": "uploads/1733143453514-dromedario-o-dono-do-deserto-1691108580 (1).jpg",
+    "id": 32
+  },
+  {
+    "model": "Quokka",
+    "brand": "Fiat",
+    "year": 1994,
+    "doors": 3,
+    "tire": "Sim",
+    "gear": "CVT",
+    "photo": "uploads/1733143542610-quokka.png",
+    "id": 33
+  },
+  {
+    "model": "Coelho",
+    "brand": "Chery",
+    "year": 2023,
+    "doors": 3,
+    "tire": "Não",
+    "gear": "Automático",
+    "photo": "uploads/1733143571397-desenho-de-coelho-300x300.png",
+    "id": 34
+  },
+  {
+    "model": "Catadióptrico",
+    "brand": "BMW",
+    "year": 1985,
+    "doors": 2,
+    "tire": "Não",
+    "gear": "Manual",
+    "photo": "uploads/1733145291814-121.jpg",
+    "id": 36
+  }
 ]

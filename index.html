@@ -14,16 +14,16 @@
         <div class="text-center">
             <h1>Gerenciador de Carros</h1>
         </div>
-        <form id="carForm">
+        <form id="carForm" enctype="multipart/form-data">
             <!-- Campos do formulário -->
             <div class="form-container">
                 <div class="form-group">
                     <label for="carModel"><b>Modelo</b></label>
-                    <input type="text" id="carModel" class="form-control" placeholder="Modelo do carro" required>
+                    <input type="text" id="carModel" class="form-control" placeholder="Modelo do carro" name="model" required>
                 </div>
                 <div class="form-group">
                     <label for="carBrand"><b>Marca</b></label>
-                    <select id="carBrand" class="form-control" required>
+                    <select id="carBrand" class="form-control" name="brand" required>
                         <option value="" disabled selected>Selecione a marca</option>
                         <option value="Audi">Audi</option>
                         <option value="BMW">BMW</option>
@@ -38,7 +38,7 @@
                 </div>
                 <div class="form-group">
                     <label for="manyDoors"><b>Portas</b></label>
-                    <select id="manyDoors" class="form-control" required>
+                    <select id="manyDoors" class="form-control" name="doors" required>
                         <option value="" disabled selected>Selecione o número de portas</option>
                         <option value="2">2</option>
                         <option value="3">3</option>
@@ -48,7 +48,7 @@
                 </div>
                 <div class="form-group">
                     <label for="tire"><b>Estepe</b></label>
-                    <select id="tire" class="form-control" required>
+                    <select id="tire" class="form-control" name="tire" required>
                         <option value="" disabled selected>Possui estepe?</option>
                         <option value="Sim">Sim</option>
                         <option value="Não">Não</option>
@@ -56,7 +56,7 @@
                 </div>
                 <div class="form-group">
                     <label for="carYear"><b>Ano</b></label>
-                    <select id="carYear" class="form-control" required>
+                    <select id="carYear" class="form-control" name="year" required>
                         <option value="" disabled selected>Selecione o ano</option>
                         <!-- Geração automática de anos -->
                         <script>
@@ -69,12 +69,16 @@
                 </div>
                 <div class="form-group">
                     <label for="carGear"><b>Câmbio</b></label>
-                    <select id="carGear" class="form-control" required>
+                    <select id="carGear" class="form-control" name="gear" required>
                         <option value="" disabled selected>Selecione o tipo de câmbio</option>
                         <option value="Manual">Manual</option>
                         <option value="Automático">Automático</option>
                         <option value="CVT">CVT</option>
                     </select>
+                </div>
+                <div class="form-group">
+                    <label for="carImage"><b>Imagem do Carro</b></label>
+                    <input type="file" id="carImage" class="form-control" name="foto" accept="image/*" required>
                 </div>
             </div>
             <div class="submit">
@@ -108,6 +112,7 @@
                     <th>Estepe</th>
                     <th>Ano</th>
                     <th>Câmbio</th>
+                    <th>Imagem</th>
                     <th>Ações</th>
                 </tr>
             </thead>
@@ -130,7 +135,6 @@
             </div>
         </div>
     </div>
-
 </body>
 
 </html>

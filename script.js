@@ -25,17 +25,28 @@ function loadData() {
 
 // Salva os dados no servidor
 function saveData(car) {
+  const formData = new FormData();
+  for (const key in car) {
+    formData.append(key, car[key]);
+  }
+  const fotoInput = document.querySelector("#carImage"); // Atualize para o ID correto
+  if (fotoInput.files[0]) {
+    formData.append("foto", fotoInput.files[0]);
+  }
+
   $.ajax({
     url: "http://127.0.0.1:3001/cars",
     type: "POST",
-    contentType: "application/json",
-    data: JSON.stringify(car),
+    processData: false,
+    contentType: false,
+    data: formData,
     success: function () {
-      console.log("Carro salvo com sucesso!");
-      loadData(); // Recarrega os dados para refletir as alterações
+      loadData(); // Recarrega a tabela
+      clearForm(); // Limpa o formulário
+      showAlert("Carro salvo com sucesso!", "success");
     },
     error: function () {
-      console.log("Erro ao salvar o carro");
+      showAlert("Erro ao salvar o carro.", "danger");
     },
   });
 }
@@ -43,7 +54,7 @@ function saveData(car) {
 // Exibe os carros na tabela
 function displayCars() {
   const tableBody = $("#carTable");
-  tableBody.empty(); // Limpa a tabela
+  tableBody.empty();
 
   const start = (currentPage - 1) * itemsPerPage;
   const end = start + itemsPerPage;
@@ -52,19 +63,26 @@ function displayCars() {
   carsToDisplay.forEach((car) => {
     const carDescription = `${car.brand} ${car.model}`;
     const row = `
-            <tr>
-                <td>${car.id}</td>
-                <td>${carDescription}</td>
-                <td>${car.doors}</td>
-                <td>${car.tire}</td>
-                <td>${car.year}</td>
-                <td>${car.gear}</td>
-                <td class="actions">
-                    <a href="#" class="btn-edit" data-index="${car.id}">EDITAR</a>
-                    <a href="#" class="btn-delete" data-index="${car.id}">DELETAR</a>
-                </td>
-            </tr>
-        `;
+      <tr>
+        <td>${car.id}</td>
+        <td>${carDescription}</td>
+        <td>${car.doors}</td>
+        <td>${car.tire}</td>
+        <td>${car.year}</td>
+        <td>${car.gear}</td>
+        <td>
+          ${
+            car.photo
+              ? `<img src="${car.photo}" alt="Carro" class="car-image">`
+              : "Sem imagem"
+          }
+        </td>
+        <td class="actions">
+          <a href="#" class="btn-edit" data-index="${car.id}">EDITAR</a>
+          <a href="#" class="btn-delete" data-index="${car.id}">DELETAR</a>
+        </td>
+      </tr>
+    `;
     tableBody.append(row);
   });
 
@@ -103,19 +121,28 @@ function displayFilteredCars(filteredCars) {
   filteredCars.forEach((car) => {
     const carDescription = `${car.brand} ${car.model}`;
     const row = `
-            <tr>
-                <td>${car.id}</td>
-                <td>${carDescription}</td>
-                <td>${car.doors}</td>
-                <td>${car.tire}</td>
-                <td>${car.year}</td>
-                <td>${car.gear}</td>
-                <td class="actions">
-                    <a href="#" class="btn-edit" data-index="${car.id}">EDITAR</a>
-                    <a href="#" class="btn-delete" data-index="${car.id}">DELETAR</a>
-                </td>
-            </tr>
-        `;
+          <tr>
+              <td>${car.id}</td>
+              <td>${carDescription}</td>
+              <td>${car.doors}</td>
+              <td>${car.tire}</td>
+              <td>${car.year}</td>
+              <td>${car.gear}</td>
+              <td>
+                  ${
+                    car.photo
+                      ? `<img src="${car.photo}" class="car-image" alt="Carro">`
+                      : "Sem imagem"
+                  }
+              </td>
+              <td class="actions">
+                  <a href="#" class="btn-edit" data-index="${car.id}">EDITAR</a>
+                  <a href="#" class="btn-delete" data-index="${
+                    car.id
+                  }">DELETAR</a>
+              </td>
+          </tr>
+      `;
     tableBody.append(row);
   });
 }
